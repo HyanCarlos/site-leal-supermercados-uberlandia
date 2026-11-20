@@ -46,23 +46,25 @@ export function HeroSection() {
   return (
     <section
       id="inicio"
-      className="relative isolate w-full overflow-hidden"
+      className="relative isolate w-full overflow-hidden bg-[#141418]"
     >
       <img
         src={FACADE_SRC}
         alt="Fachada do Supermercados Leal em Uberlândia-MG"
-        className="absolute inset-0 h-full w-full object-cover object-[center_40%]"
+        className="absolute inset-0 h-full w-full object-cover object-[center_42%]"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"
+        className="absolute inset-0 bg-gradient-to-r from-black/82 via-black/58 to-black/38"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/25"
+        className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/75"
       />
 
-      <div className="relative z-10 flex min-h-[calc(100svh-6.5rem)] w-full flex-col justify-end px-5 pb-8 pt-16 sm:px-8 sm:pb-10 sm:pt-20 lg:justify-center lg:px-12 lg:pb-14 lg:pt-16 xl:px-16">
+      <div className="relative z-10 flex min-h-[100svh] w-full flex-col justify-end px-5 pb-8 pt-32 sm:px-8 sm:pb-10 sm:pt-36 lg:justify-between lg:px-12 lg:pb-12 lg:pt-36 xl:px-16">
+        <div className="hidden lg:block" aria-hidden="true" />
+
         <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
@@ -75,7 +77,7 @@ export function HeroSection() {
               tudo mais barato!
               <span
                 aria-hidden="true"
-                className="absolute -bottom-1 left-0 h-2 w-full rounded-full bg-[#DC1F26]/80"
+                className="absolute -bottom-1 left-0 h-2 w-full rounded-full bg-[#DC1F26]/85"
               />
             </span>
           </h1>
@@ -89,7 +91,7 @@ export function HeroSection() {
               size="lg"
               variant="primary"
               onClick={() => scrollTo("#lojas")}
-              className="shadow-lg shadow-black/30"
+              className="shadow-lg shadow-black/35"
             >
               <MapPin className="h-5 w-5" />
               Encontrar loja mais próxima
@@ -102,7 +104,7 @@ export function HeroSection() {
               className="border border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white focus-visible:ring-white"
             >
               <Tag className="h-5 w-5 text-[#FACC15]" />
-              Ver ofertas da semana
+              Ver ofertas e catálogo
             </Button>
           </div>
         </motion.div>
@@ -111,7 +113,7 @@ export function HeroSection() {
           initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: shouldReduceMotion ? 0 : 0.12 }}
-          className="mt-8 grid w-full grid-cols-2 gap-2.5 sm:mt-10 sm:gap-3 lg:mt-14 lg:grid-cols-4"
+          className="mt-8 grid w-full grid-cols-2 gap-2.5 sm:mt-10 sm:gap-3 lg:mt-12 lg:grid-cols-4"
         >
           {CAPSULES.map((item) => {
             const Icon = item.icon;

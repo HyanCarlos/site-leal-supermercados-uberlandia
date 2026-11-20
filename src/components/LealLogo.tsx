@@ -11,16 +11,21 @@ export function LealLogo({
   variant = "light",
   showSubtitle = true,
 }: LealLogoProps) {
-  const strokeColor = variant === "dark" ? "#FFFFFF" : "#DC1F26";
   const letterFill = "#FFFFFF";
   const letterStroke = "#DC1F26";
-  const subtitleColor = variant === "dark" ? "text-zinc-200" : "text-[#DC1F26]";
+  const subtitleColor =
+    variant === "dark"
+      ? "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.75)]"
+      : "text-[#DC1F26]";
 
   return (
     <div className={cn("inline-flex flex-col items-start select-none", className)}>
       <svg
         viewBox="0 0 218 68"
-        className="h-10 w-auto sm:h-11"
+        className={cn(
+          "h-10 w-auto sm:h-11",
+          variant === "dark" && "drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]"
+        )}
         role="img"
         aria-label="Logotipo Supermercados Leal"
       >
@@ -32,8 +37,8 @@ export function LealLogo({
           height="42"
           rx="8"
           transform="rotate(45 133 28)"
-          fill="#D4D4D8"
-          stroke="#A1A1AA"
+          fill={variant === "dark" ? "#E4E4E7" : "#D4D4D8"}
+          stroke={variant === "dark" ? "#FFFFFF" : "#A1A1AA"}
           strokeWidth="2"
         />
 
@@ -82,21 +87,6 @@ export function LealLogo({
           strokeWidth="5.5"
           strokeLinejoin="round"
         />
-
-        {/* Outer accent line for dark background contrast */}
-        {variant === "dark" && (
-          <rect
-            x="2"
-            y="2"
-            width="214"
-            height="64"
-            rx="12"
-            stroke={strokeColor}
-            strokeOpacity="0.08"
-            strokeWidth="1"
-            fill="none"
-          />
-        )}
       </svg>
       {showSubtitle && (
         <span

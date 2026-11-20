@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import { MotionConfig } from "framer-motion";
 import Lenis from "lenis";
+import { BagProvider } from "./context/BagContext";
 import { Navbar } from "./components/Navbar";
 import { HeroSection } from "./components/HeroSection";
 import { AboutSection } from "./components/AboutSection";
-import { WeeklyOffersSection } from "./components/WeeklyOffersSection";
+import { CatalogSection } from "./components/CatalogSection";
 import { LealCardShowcase } from "./components/LealCardShowcase";
 import { ClubeLealSection } from "./components/ClubeLealSection";
 import { StoresSection } from "./components/StoresSection";
 import { CareersSection } from "./components/CareersSection";
 import { Footer } from "./components/Footer";
+import { BagDrawer } from "./components/BagDrawer";
 
 export function App() {
   useEffect(() => {
@@ -38,28 +40,31 @@ export function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="min-h-screen flex flex-col bg-white text-zinc-900">
-        <a
-          href="#conteudo-principal"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-lg focus:bg-[#DC1F26] focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-white"
-        >
-          Ir para o conteúdo principal
-        </a>
+      <BagProvider>
+        <div className="min-h-screen flex flex-col bg-white text-zinc-900">
+          <a
+            href="#conteudo-principal"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[80] focus:rounded-lg focus:bg-[#DC1F26] focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-white"
+          >
+            Ir para o conteúdo principal
+          </a>
 
-        <Navbar />
+          <Navbar />
 
-        <main id="conteudo-principal" className="flex-1">
-          <HeroSection />
-          <AboutSection />
-          <WeeklyOffersSection />
-          <LealCardShowcase />
-          <ClubeLealSection />
-          <StoresSection />
-          <CareersSection />
-        </main>
+          <main id="conteudo-principal" className="flex-1">
+            <HeroSection />
+            <AboutSection />
+            <CatalogSection />
+            <LealCardShowcase />
+            <ClubeLealSection />
+            <StoresSection />
+            <CareersSection />
+          </main>
 
-        <Footer />
-      </div>
+          <Footer />
+          <BagDrawer />
+        </div>
+      </BagProvider>
     </MotionConfig>
   );
 }
