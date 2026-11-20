@@ -41,7 +41,7 @@ export function CareersSection() {
               Faça parte da equipe Supermercados Leal
             </h2>
             <p className="text-base leading-relaxed text-zinc-600">
-              Com 10 supermercados em Uberlândia, o Leal gera oportunidades em
+              Com lojas em vários bairros de Uberlândia, o Leal gera oportunidades em
               atendimento, caixa, açougue, padaria, hortifrúti, reposição e
               logística.
             </p>
@@ -59,7 +59,7 @@ export function CareersSection() {
               </a>
               <p className="text-xs text-zinc-600">
                 Você também pode entregar seu currículo impresso diretamente ao
-                gerente de qualquer uma das 10 lojas em Uberlândia.
+                gerente de qualquer uma das lojas em Uberlândia.
               </p>
             </div>
           </div>

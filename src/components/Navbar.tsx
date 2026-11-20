@@ -5,6 +5,7 @@ import { LealLogo } from "./LealLogo";
 import { Button } from "./ui/button";
 
 const NAV_LINKS = [
+  { label: "Sobre o Leal", href: "#sobre" },
   { label: "Ofertas", href: "#ofertas" },
   { label: "Cartão Leal", href: "#cartao-leal" },
   { label: "Clube Leal", href: "#clube-leal" },
@@ -24,14 +25,13 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-200/80 bg-white/90 backdrop-blur-md">
-      {/* Top subtle demo + hours bar */}
-      <div className="bg-[#141418] text-zinc-200 text-xs">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-1.5 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 w-full border-b border-zinc-200/80 bg-white/90 backdrop-blur-md">
+      <div className="w-full bg-[#141418] text-zinc-200 text-xs">
+        <div className="flex w-full flex-wrap items-center justify-between gap-2 px-5 py-1.5 sm:px-8 lg:px-12 xl:px-16">
           <p className="flex items-center gap-2 text-[11px] sm:text-xs text-zinc-300">
             <span className="inline-block h-2 w-2 rounded-full bg-[#FACC15]" aria-hidden="true" />
             <span>
-              Uberlândia/MG · 10 unidades · Seg. a Sáb. 07h–22h | Dom. e feriados 07h–21h30
+              Uberlândia/MG · Seg. a Sáb. 07h–22h | Dom. e feriados 07h–21h30
             </span>
           </p>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-2.5 py-0.5 text-[11px] font-medium text-amber-200">
@@ -40,8 +40,7 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Main Nav */}
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="flex h-16 w-full items-center justify-between px-5 sm:px-8 lg:px-12 xl:px-16">
         <a
           href="#inicio"
           aria-label="Voltar ao topo - Supermercados Leal"
@@ -50,12 +49,12 @@ export function Navbar() {
           <LealLogo />
         </a>
 
-        <nav aria-label="Navegação principal" className="hidden items-center gap-1 lg:flex">
+        <nav aria-label="Navegação principal" className="hidden items-center gap-0.5 lg:flex">
           {NAV_LINKS.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="rounded-lg px-3.5 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-[#DC1F26]"
+              className="rounded-lg px-2 py-2 text-[13px] font-semibold text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-[#DC1F26] xl:px-3 xl:text-sm"
             >
               {item.label}
             </a>
@@ -77,7 +76,7 @@ export function Navbar() {
             onClick={() => handleLinkClick("#lojas")}
           >
             <MapPin className="h-4 w-4" />
-            10 Lojas em Uberlândia
+            Encontrar loja
           </Button>
         </div>
 
@@ -92,7 +91,6 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Drawer */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -102,7 +100,7 @@ export function Navbar() {
             transition={{ duration: 0.2 }}
             className="overflow-hidden border-t border-zinc-200 bg-white lg:hidden"
           >
-            <nav aria-label="Menu móvel" className="flex flex-col gap-1 px-4 py-4">
+            <nav aria-label="Menu móvel" className="flex flex-col gap-1 px-5 py-4 sm:px-8">
               {NAV_LINKS.map((item) => (
                 <a
                   key={item.href}
@@ -116,7 +114,7 @@ export function Navbar() {
                   {item.label}
                 </a>
               ))}
-              <div className="mt-2 grid grid-cols-2 gap-2 pt-2 border-t border-zinc-100">
+              <div className="mt-2 grid grid-cols-2 gap-2 border-t border-zinc-100 pt-2">
                 <Button
                   variant="outline"
                   onClick={() => handleLinkClick("#cartao-leal")}
@@ -127,7 +125,7 @@ export function Navbar() {
                   variant="primary"
                   onClick={() => handleLinkClick("#lojas")}
                 >
-                  Ver 10 Lojas
+                  Encontrar loja
                 </Button>
               </div>
             </nav>

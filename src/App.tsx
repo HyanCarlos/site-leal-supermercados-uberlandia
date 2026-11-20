@@ -3,6 +3,7 @@ import { MotionConfig } from "framer-motion";
 import Lenis from "lenis";
 import { Navbar } from "./components/Navbar";
 import { HeroSection } from "./components/HeroSection";
+import { AboutSection } from "./components/AboutSection";
 import { WeeklyOffersSection } from "./components/WeeklyOffersSection";
 import { LealCardShowcase } from "./components/LealCardShowcase";
 import { ClubeLealSection } from "./components/ClubeLealSection";
@@ -49,6 +50,7 @@ export function App() {
 
         <main id="conteudo-principal" className="flex-1">
           <HeroSection />
+          <AboutSection />
           <WeeklyOffersSection />
           <LealCardShowcase />
           <ClubeLealSection />

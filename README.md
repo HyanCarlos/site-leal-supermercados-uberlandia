@@ -1,6 +1,6 @@
 # Supermercados Leal — Site Modelo (Uberlândia/MG)
 
-Modelo de demonstração comercial desenvolvido para apresentação ao **Supermercados Leal** (Uberlândia/MG), com foco em presença digital, economia local, Cartão Tricard Leal, App Clube Leal e guia interativo das 10 unidades da rede.
+Modelo de demonstração comercial desenvolvido para apresentação ao **Supermercados Leal** (Uberlândia/MG), com foco em presença digital, economia local, Cartão Tricard Leal, App Clube Leal e guia interativo das lojas da rede.
 
 > **Aviso:** Modelo de demonstração — **HRP Múltipla**. As ofertas semanais exibidas usam conteúdo provisório claramente marcado como exemplo ilustrativo, sem preços inventados.
 

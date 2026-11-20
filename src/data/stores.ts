@@ -66,7 +66,7 @@ export const STORES: StoreUnit[] = [
     id: "novo-mundo",
     name: "Unidade Novo Mundo",
     neighborhood: "Novo Mundo",
-    badge: "10ª Loja",
+    badge: "Nova loja",
     address: "Av. Segismundo Pereira, 5188 — Novo Mundo",
     cep: "38407-718",
     phoneDisplay: "(34) 3232-2124",

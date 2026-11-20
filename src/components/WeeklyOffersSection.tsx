@@ -57,7 +57,7 @@ export function WeeklyOffersSection() {
             </h2>
             <p className="text-base text-zinc-600">
               Estrutura organizada por setores (Hortifrúti, Açougue, Padaria e
-              Mercearia) para publicar promoções válidas em todas as 10 lojas de
+              Mercearia) para publicar promoções válidas em todas as lojas de
               Uberlândia.
             </p>
           </div>

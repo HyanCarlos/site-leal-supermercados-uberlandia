@@ -58,7 +58,7 @@ export function StoresSection() {
         <div className="max-w-3xl space-y-3">
           <Badge variant="red">
             <MapPin className="h-3.5 w-3.5" />
-            10 Unidades em Uberlândia/MG
+            Lojas em Uberlândia/MG
           </Badge>
           <h2 className="font-['Sora'] text-3xl font-extrabold text-zinc-950 sm:text-4xl">
             Nossas Lojas em Uberlândia
@@ -110,7 +110,7 @@ export function StoresSection() {
                         : "bg-white text-zinc-700 border border-zinc-200 hover:bg-zinc-100"
                     }`}
                   >
-                    {region === "Todas" ? "Todas (10)" : `Região ${region}`}
+                    {region === "Todas" ? "Todas as lojas" : `Região ${region}`}
                   </button>
                 );
               })}
@@ -176,7 +176,7 @@ export function StoresSection() {
                   }}
                   className="mt-3 text-xs font-bold text-[#DC1F26] underline cursor-pointer"
                 >
-                  Mostrar todas as 10 unidades
+                  Mostrar todas as lojas
                 </button>
               </Card>
             ) : (

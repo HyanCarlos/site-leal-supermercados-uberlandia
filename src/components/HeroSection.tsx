@@ -1,32 +1,44 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { MapPin, Tag, CreditCard, Smartphone, Clock, ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
-import { Badge } from "./ui/badge";
 
-const HIGHLIGHTS = [
+const FACADE_SRC =
+  "https://s2-g1.glbimg.com/P9-fs2eM_SVFcWGfKTyvhvUeVyM=/1600x0/filters:format(jpeg)/https://i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2022/A/i/01ZIRBQ7O5OcSz4UlEeQ/leal.jpeg";
+
+const CAPSULES = [
   {
     icon: Clock,
     label: "Desde 1989",
+    shortLabel: "Desde 1989",
     detail: "Tradição em Uberlândia",
+    href: "#sobre",
   },
   {
     icon: MapPin,
-    label: "10 Supermercados",
-    detail: "Perto do seu bairro",
+    label: "Perto do seu bairro",
+    shortLabel: "Seu bairro",
+    detail: "Encontre a loja mais próxima",
+    href: "#lojas",
   },
   {
     icon: CreditCard,
     label: "Cartão Tricard Leal",
+    shortLabel: "Cartão Leal",
     detail: "Até 40 dias para pagar",
+    href: "#cartao-leal",
   },
   {
     icon: Smartphone,
     label: "App Clube Leal",
+    shortLabel: "Clube Leal",
     detail: "Descontos no CPF",
+    href: "#clube-leal",
   },
 ];
 
 export function HeroSection() {
+  const shouldReduceMotion = useReducedMotion();
+
   const scrollTo = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -34,172 +46,103 @@ export function HeroSection() {
   return (
     <section
       id="inicio"
-      className="relative overflow-hidden bg-gradient-to-b from-[#FFFDF9] via-white to-[#F7F7F9] pt-8 pb-14 sm:pt-12 sm:pb-20"
+      className="relative isolate w-full overflow-hidden"
     >
-      {/* Subtle geometric brand backdrop */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-24 right-0 h-96 w-96 rounded-full bg-[#DC1F26]/6 blur-3xl"
+      <img
+        src={FACADE_SRC}
+        alt="Fachada do Supermercados Leal em Uberlândia-MG"
+        className="absolute inset-0 h-full w-full object-cover object-[center_40%]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 -left-24 h-80 w-80 rounded-full bg-[#FACC15]/15 blur-3xl"
+        className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/25"
       />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
-          {/* Left Copy Column */}
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="lg:col-span-6 space-y-6"
-          >
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="red">Desde 1989 em Uberlândia/MG</Badge>
-              <Badge variant="gold">10 Lojas na cidade</Badge>
-            </div>
+      <div className="relative z-10 flex min-h-[calc(100svh-6.5rem)] w-full flex-col justify-end px-5 pb-8 pt-16 sm:px-8 sm:pb-10 sm:pt-20 lg:justify-center lg:px-12 lg:pb-14 lg:pt-16 xl:px-16">
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-3xl space-y-5 sm:space-y-6"
+        >
+          <h1 className="font-['Sora'] text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-[4rem]">
+            No Leal é{" "}
+            <span className="relative inline-block text-[#FACC15]">
+              tudo mais barato!
+              <span
+                aria-hidden="true"
+                className="absolute -bottom-1 left-0 h-2 w-full rounded-full bg-[#DC1F26]/80"
+              />
+            </span>
+          </h1>
 
-            <h1 className="relative z-0 font-['Sora'] text-3xl font-extrabold leading-[1.12] tracking-tight text-zinc-950 sm:text-5xl lg:text-[3.25rem]">
-              No Leal é{" "}
-              <span className="relative inline-block text-[#DC1F26]">
-                tudo mais barato!
-                <span
-                  aria-hidden="true"
-                  className="absolute -bottom-1 left-0 h-2 w-full rounded-full bg-[#FACC15]/70 -z-10"
-                />
-              </span>{" "}
-              Economia perto da sua família.
-            </h1>
+          <p className="max-w-xl text-base font-medium text-white/90 sm:text-lg">
+            Economia perto da sua família, em todos os bairros de Uberlândia.
+          </p>
 
-            <p className="max-w-xl text-base leading-relaxed text-zinc-600 sm:text-lg">
-              Rede supermercadista uberlandense com açougue, padaria própria, hortifrúti
-              selecionado e mercearia completa. Encontre a loja mais próxima, aproveite o{" "}
-              <strong className="font-semibold text-zinc-900">Cartão Tricard Leal</strong> e
-              ative ofertas no <strong className="font-semibold text-zinc-900">Clube Leal</strong>.
-            </p>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <Button
+              size="lg"
+              variant="primary"
+              onClick={() => scrollTo("#lojas")}
+              className="shadow-lg shadow-black/30"
+            >
+              <MapPin className="h-5 w-5" />
+              Encontrar loja mais próxima
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+            <Button
+              size="lg"
+              variant="ghost"
+              onClick={() => scrollTo("#ofertas")}
+              className="border border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white focus-visible:ring-white"
+            >
+              <Tag className="h-5 w-5 text-[#FACC15]" />
+              Ver ofertas da semana
+            </Button>
+          </div>
+        </motion.div>
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Button
-                size="lg"
-                variant="primary"
-                onClick={() => scrollTo("#lojas")}
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: shouldReduceMotion ? 0 : 0.12 }}
+          className="mt-8 grid w-full grid-cols-2 gap-2.5 sm:mt-10 sm:gap-3 lg:mt-14 lg:grid-cols-4"
+        >
+          {CAPSULES.map((item) => {
+            const Icon = item.icon;
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo(item.href);
+                }}
+                className="glass-capsule group flex items-center gap-3 rounded-full border border-white/25 bg-white/12 px-3.5 py-3 shadow-lg shadow-black/20 backdrop-blur-md transition-transform duration-300 hover:-translate-y-1 hover:scale-[1.03] hover:border-white/45 hover:bg-white/20 hover:shadow-xl hover:shadow-black/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FACC15] motion-reduce:transform-none motion-reduce:transition-none sm:px-5 sm:py-3.5"
               >
-                <MapPin className="h-5 w-5" />
-                Encontrar loja mais próxima
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => scrollTo("#ofertas")}
-              >
-                <Tag className="h-5 w-5 text-[#DC1F26]" />
-                Ver ofertas da semana
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3 pt-4 sm:grid-cols-4">
-              {HIGHLIGHTS.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={item.label}
-                    className="rounded-2xl border border-zinc-200/80 bg-white/90 p-3.5 shadow-xs"
-                  >
-                    <Icon className="h-5 w-5 text-[#DC1F26] mb-2" aria-hidden="true" />
-                    <p className="text-xs font-bold text-zinc-950">{item.label}</p>
-                    <p className="text-[11px] text-zinc-500 mt-0.5">{item.detail}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </motion.div>
-
-          {/* Right Visual Collage Column with Real Leal Photos */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.08 }}
-            className="lg:col-span-6"
-          >
-            <div className="relative">
-              {/* Primary Real Store Photo */}
-              <div className="relative overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-900 shadow-2xl shadow-zinc-900/10 aspect-[4/3]">
-                <img
-                  src="https://s2-g1.glbimg.com/P9-fs2eM_SVFcWGfKTyvhvUeVyM=/1600x0/filters:format(jpeg)/https://i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2022/A/i/01ZIRBQ7O5OcSz4UlEeQ/leal.jpeg"
-                  alt="Fachada real de uma das unidades do Supermercados Leal em Uberlândia-MG"
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-zinc-950/15 to-transparent" />
-
-                {/* Top pill inside photo */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-zinc-900 shadow-sm">
-                    <span className="h-2 w-2 rounded-full bg-[#DC1F26]" aria-hidden="true" />
-                    Uberlândia · MG
+                <span className="capsule-icon inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#DC1F26] text-white shadow-sm sm:h-10 sm:w-10">
+                  <Icon className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
+                </span>
+                <span className="min-w-0 text-left">
+                  <span className="block font-['Sora'] text-[11px] font-bold leading-tight text-white sm:hidden">
+                    {item.shortLabel}
                   </span>
-                  <span className="rounded-full bg-[#FACC15] px-3 py-1 text-xs font-extrabold text-zinc-950 shadow-sm">
-                    10 Lojas Ativas
+                  <span className="hidden font-['Sora'] text-sm font-bold text-white sm:block">
+                    {item.label}
                   </span>
-                </div>
-
-                {/* Bottom info overlay */}
-                <div className="absolute bottom-4 left-4 right-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-amber-300">
-                      Matriz Presidente Roosevelt + 9 filiais
-                    </p>
-                    <p className="font-['Sora'] text-lg font-bold text-white sm:text-xl">
-                      Presente nos principais bairros de Uberlândia
-                    </p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => scrollTo("#cartao-leal")}
-                    className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-[#DC1F26] px-4 py-2.5 text-xs font-bold text-white shadow-lg transition hover:bg-[#B8161C] cursor-pointer"
-                  >
-                    Conhecer Cartão 3D
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </button>
-                </div>
-              </div>
-
-              {/* Secondary real interior inset card (hidden on smallest screens or cleanly stacked) */}
-              <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                <div className="flex items-center gap-3 rounded-2xl border border-zinc-200 bg-white p-3 shadow-sm">
-                  <img
-                    src="https://regionalzao.com.br/wp-content/uploads/2025/12/e83e4976-fc8d-41fa-8efc-36841a3ecb9e.webp"
-                    alt="Unidade Novo Mundo do Supermercados Leal em Uberlândia"
-                    className="h-16 w-20 shrink-0 rounded-xl object-cover"
-                    loading="lazy"
-                  />
-                  <div>
-                    <p className="text-xs font-bold text-[#DC1F26]">Expansão em Uberlândia</p>
-                    <p className="text-sm font-bold text-zinc-900 leading-snug">
-                      10ª loja inaugurada no Novo Mundo
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 rounded-2xl border border-zinc-200 bg-white p-3 shadow-sm">
-                  <img
-                    src="https://play-lh.googleusercontent.com/abowZ3thw1d6DPAwvZepWSevWtibrfrr1bndFyPgLgDqdYXJDrtAfCTZk1az8TP2XSFXUzs4mXccLcXqKy5baQ=s0-br30"
-                    alt="Ícone oficial do aplicativo Clube Leal"
-                    className="h-14 w-14 shrink-0 rounded-xl border border-zinc-100 object-contain bg-white p-1"
-                    loading="lazy"
-                  />
-                  <div>
-                    <p className="text-xs font-bold text-zinc-500">Fidelidade Digital</p>
-                    <p className="text-sm font-bold text-zinc-900 leading-snug">
-                      App Clube Leal com vantagens no CPF
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+                  <span className="mt-0.5 hidden text-[11px] text-white/75 sm:block">
+                    {item.detail}
+                  </span>
+                </span>
+              </a>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

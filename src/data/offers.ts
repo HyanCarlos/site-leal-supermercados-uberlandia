@@ -90,7 +90,7 @@ export const DEMO_OFFERS: DemoOfferItem[] = [
   {
     id: "ofertas-loja-nova",
     category: "Hortifrúti",
-    title: "Seleção Especial nas 10 Lojas",
+    title: "Seleção Especial nas Lojas",
     unitLabel: "Válido nas unidades de Uberlândia enquanto durarem os estoques",
     demoBadge: "Exemplo de encarte",
     demoPriceLabel: "Valor oficial definido no encarte",

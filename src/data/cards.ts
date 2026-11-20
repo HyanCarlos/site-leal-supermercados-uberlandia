@@ -61,13 +61,13 @@ export const LEAL_CARDS: LealCardVariant[] = [
     id: "familia-dez-lojas",
     step: "03",
     tag: "Em toda Uberlândia",
-    title: "Aceito nas 10 unidades Leal",
+    title: "Aceito em todas as lojas Leal",
     subtitle: "DO ROOSEVELT AO NOVO MUNDO",
     highlight: "Sempre uma loja perto do seu bairro",
     description:
       "Seja na matriz do Presidente Roosevelt ou nas filiais em expansão por Uberlândia, seu Cartão Tricard Leal funciona em todos os caixas.",
     bullets: [
-      "10 supermercados espalhados pela cidade",
+      "Lojas espalhadas pelos bairros da cidade",
       "Atendimento próximo e caixas sinalizados",
       "Sujeito à aprovação de crédito no balcão da loja",
     ],
@@ -76,6 +76,6 @@ export const LEAL_CARDS: LealCardVariant[] = [
     accentColor: "#141418",
     textColor: "text-zinc-950",
     chipTone: "silver",
-    badgeText: "10 UNIDADES",
+    badgeText: "TODAS AS LOJAS",
   },
 ];

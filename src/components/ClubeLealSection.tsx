@@ -5,7 +5,7 @@ import { Badge } from "./ui/badge";
 const CLUBE_BENEFITS = [
   "Ofertas personalizadas de acordo com o seu perfil de compras",
   "Identificação simples informando apenas o CPF no caixa",
-  "Acesso gratuito para Android e iPhone nas 10 unidades",
+  "Acesso gratuito para Android e iPhone nas lojas da rede",
 ];
 
 export function ClubeLealSection() {
@@ -58,7 +58,7 @@ export function ClubeLealSection() {
                 <div className="mt-4 flex items-center justify-between text-xs text-zinc-500 px-1">
                   <span>Android & iOS</span>
                   <span className="font-semibold text-[#DC1F26]">
-                    Válido nas 10 lojas
+                    Válido em todas as lojas
                   </span>
                 </div>
               </div>

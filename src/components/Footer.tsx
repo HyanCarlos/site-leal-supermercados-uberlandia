@@ -45,9 +45,7 @@ export function Footer() {
           <div className="md:col-span-5 space-y-4">
             <LealLogo variant="dark" />
             <p className="max-w-sm text-sm leading-relaxed text-zinc-400">
-              Supermercados Leal — Desde 1989 em Uberlândia/MG. Dez unidades nos
-              bairros da cidade com economia todos os dias. Aqui é tudo mais
-              barato!
+              Supermercados Leal — Desde 1989 em Uberlândia/MG. Lojas nos bairros da cidade, com economia todos os dias. Aqui é tudo mais barato!
             </p>
             <span className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-amber-200">
               Modelo de demonstração — HRP Múltipla
@@ -59,6 +57,11 @@ export function Footer() {
               Navegação
             </h3>
             <ul className="space-y-2 text-sm">
+              <li>
+                <a href="#sobre" className="hover:text-white transition">
+                  Sobre o Leal
+                </a>
+              </li>
               <li>
                 <a href="#ofertas" className="hover:text-white transition">
                   Ofertas da semana
@@ -76,7 +79,7 @@ export function Footer() {
               </li>
               <li>
                 <a href="#lojas" className="hover:text-white transition">
-                  10 Lojas em Uberlândia
+                  Nossas Lojas
                 </a>
               </li>
               <li>

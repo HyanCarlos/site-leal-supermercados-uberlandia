@@ -37,6 +37,51 @@
   transform-style: preserve-3d;
 }
 
+.glass-capsule {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.glass-capsule::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.38) 50%,
+    transparent 65%
+  );
+  transform: translateX(-140%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.glass-capsule:hover::after,
+.glass-capsule:focus-visible::after {
+  transform: translateX(140%);
+}
+
+.glass-capsule .capsule-icon {
+  transition: transform 0.35s ease;
+}
+
+.glass-capsule:hover .capsule-icon,
+.glass-capsule:focus-visible .capsule-icon {
+  transform: translateY(-2px) scale(1.12) rotate(-8deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-capsule::after {
+    display: none;
+  }
+  .glass-capsule .capsule-icon {
+    transition: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto !important;

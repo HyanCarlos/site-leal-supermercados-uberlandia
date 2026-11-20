@@ -109,7 +109,7 @@ export function LealCardShowcase() {
 
               <h2 className="font-['Sora'] text-3xl font-extrabold leading-tight sm:text-4xl lg:text-[2.75rem]">
                 Mais prazo para a sua compra e vantagens nas{" "}
-                <span className="text-[#FACC15]">10 lojas Leal</span>
+                <span className="text-[#FACC15]">lojas Leal</span>
               </h2>
 
               {/* Interactive Card Step Tabs */}
@@ -332,7 +332,7 @@ export function LealCardShowcase() {
                               •••• •••• •••• LEAL
                             </p>
                             <p className="mt-0.5 text-[11px] font-semibold opacity-80">
-                              Uberlândia · 10 Lojas
+                              Uberlândia · MG
                             </p>
                           </div>
                           <span className="font-['Sora'] text-xs font-extrabold tracking-wider uppercase">
