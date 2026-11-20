@@ -1,19 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { MotionConfig } from "framer-motion";
 import Lenis from "lenis";
 import { BagProvider } from "./context/BagContext";
+import type { CatalogFilter } from "./data/catalog";
 import { Navbar } from "./components/Navbar";
 import { HeroSection } from "./components/HeroSection";
-import { AboutSection } from "./components/AboutSection";
+import { DepartmentsSection } from "./components/DepartmentsSection";
 import { CatalogSection } from "./components/CatalogSection";
+import { EncarteViewer } from "./components/EncarteViewer";
 import { LealCardShowcase } from "./components/LealCardShowcase";
 import { ClubeLealSection } from "./components/ClubeLealSection";
 import { StoresSection } from "./components/StoresSection";
+import { AboutSection } from "./components/AboutSection";
 import { CareersSection } from "./components/CareersSection";
 import { Footer } from "./components/Footer";
 import { BagDrawer } from "./components/BagDrawer";
 
 export function App() {
+  const [selectedCategory, setSelectedCategory] =
+    useState<CatalogFilter>("todas");
+
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -52,12 +58,17 @@ export function App() {
           <Navbar />
 
           <main id="conteudo-principal" className="flex-1">
-            <HeroSection />
-            <AboutSection />
-            <CatalogSection />
+            <HeroSection onSelectDepartment={setSelectedCategory} />
+            <DepartmentsSection onSelectDepartment={setSelectedCategory} />
+            <CatalogSection
+              selectedCategory={selectedCategory}
+              onSelectCategory={setSelectedCategory}
+            />
+            <EncarteViewer />
             <LealCardShowcase />
             <ClubeLealSection />
             <StoresSection />
+            <AboutSection />
             <CareersSection />
           </main>
 

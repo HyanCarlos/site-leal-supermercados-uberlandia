@@ -3,74 +3,80 @@ export type CatalogCategoryId =
   | "acougue"
   | "padaria"
   | "mercearia"
-  | "bebidas-matinais"
-  | "selecoes-especiais";
+  | "bebidas"
+  | "higiene";
 
 export type CatalogFilter = "todas" | CatalogCategoryId;
 
-export interface CategoryCoverConfig {
+export interface DepartmentConfig {
   id: CatalogCategoryId;
   tabLabel: string;
-  coverTitle: string;
-  coverSubtitle: string;
-  /** Caminho local em public/images/categorias/. Para trocar a foto da capa, substitua o arquivo ou atualize este caminho. */
+  title: string;
+  shortDesc: string;
+  /** Caminho local em public/images/categorias/. Troque o arquivo ou o caminho abaixo para atualizar a foto. */
   coverImage: string;
   coverAlt: string;
+  accentTag: string;
 }
 
 /**
- * CAPAS DAS CATEGORIAS (FÁCIL DE TROCAR)
- * Basta colocar as novas imagens em `public/images/categorias/` com o mesmo nome
- * ou alterar a propriedade `coverImage` abaixo.
+ * DEPARTAMENTOS E CAPAS (FÁCIL DE TROCAR)
+ * Fotos reais do cliente e imagens livres otimizadas em public/images/categorias/.
  */
-export const CATEGORY_COVERS: CategoryCoverConfig[] = [
+export const DEPARTMENTS: DepartmentConfig[] = [
   {
     id: "hortifruti",
     tabLabel: "Hortifrúti",
-    coverTitle: "Hortifrúti",
-    coverSubtitle: "Frutas, legumes e verduras selecionadas",
+    title: "Hortifrúti",
+    shortDesc: "Frutas, legumes e verduras fresquinhos selecionados todos os dias.",
     coverImage: "/images/categorias/hortifruti.webp",
-    coverAlt: "Bancada de hortifrúti com frutas, verduras e legumes frescos",
+    coverAlt: "Banca de hortifrúti com frutas e verduras frescas",
+    accentTag: "Frescor diário",
   },
   {
     id: "acougue",
     tabLabel: "Açougue",
-    coverTitle: "Cortes de açougue",
-    coverSubtitle: "Bovinos, suínos e aves selecionados",
+    title: "Açougue",
+    shortDesc: "Cortes bovinos, suínos e aves preparados no balcão com procedência.",
     coverImage: "/images/categorias/acougue.webp",
-    coverAlt: "Capa da categoria Cortes de açougue",
+    coverAlt: "Balcão de açougue do supermercado com cortes selecionados",
+    accentTag: "Cortes na hora",
   },
   {
     id: "padaria",
     tabLabel: "Padaria",
-    coverTitle: "Padaria e confeitaria próprias",
-    coverSubtitle: "Pães quentinhos, bolos e quitandas",
+    title: "Padaria",
+    shortDesc: "Pães quentinhos, frios fatiados, queijos mineiros, bolos e quitandas.",
     coverImage: "/images/categorias/padaria.webp",
-    coverAlt: "Capa da categoria Padaria e confeitaria próprias",
+    coverAlt: "Setor de padaria e frios do supermercado",
+    accentTag: "Padaria & Frios",
   },
   {
     id: "mercearia",
     tabLabel: "Mercearia",
-    coverTitle: "Itens essenciais da despensa",
-    coverSubtitle: "Arroz, feijão, óleo, massas e básicos",
+    title: "Mercearia",
+    shortDesc: "Arroz, feijão, óleo, massas, azeites e itens essenciais da despensa.",
     coverImage: "/images/categorias/mercearia.webp",
-    coverAlt: "Capa da categoria Itens essenciais da despensa",
+    coverAlt: "Corredor de mercearia abastecido",
+    accentTag: "Despensa completa",
   },
   {
-    id: "bebidas-matinais",
-    tabLabel: "Bebidas e Matinais",
-    coverTitle: "Café, bebidas e matinais",
-    coverSubtitle: "Café, leite, sucos, lácteos e bebidas",
-    coverImage: "/images/categorias/bebidas-matinais.webp",
-    coverAlt: "Capa da categoria Café, bebidas e matinais",
+    id: "bebidas",
+    tabLabel: "Bebidas",
+    title: "Bebidas",
+    shortDesc: "Refrigerantes, sucos, cafés, lácteos e adega selecionada.",
+    coverImage: "/images/categorias/bebidas.webp",
+    coverAlt: "Gôndola de bebidas, refrigerantes e vinhos no supermercado",
+    accentTag: "Geladas & Adega",
   },
   {
-    id: "selecoes-especiais",
-    tabLabel: "Seleções especiais",
-    coverTitle: "Seleções especiais da loja",
-    coverSubtitle: "Queijos mineiros, azeites, vinhos e frios",
-    coverImage: "/images/categorias/selecoes-especiais.webp",
-    coverAlt: "Capa da categoria Seleções especiais da loja no Supermercados Leal",
+    id: "higiene",
+    tabLabel: "Higiene e limpeza",
+    title: "Higiene e limpeza",
+    shortDesc: "Tudo para o cuidado pessoal e limpeza prática da sua casa.",
+    coverImage: "/images/categorias/higiene-limpeza.webp",
+    coverAlt: "Produtos de limpeza e cuidados para casa",
+    accentTag: "Casa cuidada",
   },
 ];
 
@@ -87,7 +93,7 @@ export interface CatalogProduct {
 }
 
 export const CATALOG_PRODUCTS: CatalogProduct[] = [
-  // Hortifrúti
+  // Hortifrúti (6)
   {
     id: "banana-prata",
     category: "hortifruti",
@@ -96,7 +102,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     illustrativePrice: 5.49,
     image: "/images/produtos/banana-prata.webp",
     imageAlt: "Bananas prata maduras",
-    badge: "Hortifrúti",
+    badge: "Campanha exemplo",
   },
   {
     id: "tomate-italiano",
@@ -144,7 +150,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     imageAlt: "Folhas frescas de alface crespa",
   },
 
-  // Cortes de açougue
+  // Açougue (6)
   {
     id: "alcatra-bovina",
     category: "acougue",
@@ -153,7 +159,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     illustrativePrice: 39.9,
     image: "/images/produtos/alcatra-bovina.webp",
     imageAlt: "Corte bovino de alcatra",
-    badge: "Açougue",
+    badge: "Campanha exemplo",
   },
   {
     id: "peito-frango",
@@ -201,7 +207,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     imageAlt: "Costela suína preparada",
   },
 
-  // Padaria e confeitaria próprias
+  // Padaria & Frios (8)
   {
     id: "pao-frances",
     category: "padaria",
@@ -257,8 +263,26 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     image: "/images/produtos/croissant-manteiga.webp",
     imageAlt: "Croissant dourado folhado",
   },
+  {
+    id: "queijo-minas",
+    category: "padaria",
+    name: "Queijo Minas Frescal",
+    unit: "kg",
+    illustrativePrice: 38.9,
+    image: "/images/produtos/queijo-minas.webp",
+    imageAlt: "Queijo Minas Frescal inteiro no prato",
+  },
+  {
+    id: "presunto-fatiado",
+    category: "padaria",
+    name: "Presunto Cozido Fatiado",
+    unit: "200 g",
+    illustrativePrice: 8.49,
+    image: "/images/produtos/presunto-fatiado.webp",
+    imageAlt: "Frios e presunto fatiado na tábua",
+  },
 
-  // Itens essenciais da despensa (Mercearia)
+  // Mercearia (8)
   {
     id: "arroz-branco",
     category: "mercearia",
@@ -267,7 +291,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     illustrativePrice: 25.9,
     image: "/images/produtos/arroz-branco.webp",
     imageAlt: "Grãos de arroz branco tipo 1",
-    badge: "Despensa",
+    badge: "Campanha exemplo",
   },
   {
     id: "feijao-carioca",
@@ -314,21 +338,39 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     image: "/images/produtos/molho-tomate.webp",
     imageAlt: "Molho de tomate com tomates frescos",
   },
+  {
+    id: "azeite-extra-virgem",
+    category: "mercearia",
+    name: "Azeite de Oliva Extra Virgem",
+    unit: "500 ml",
+    illustrativePrice: 34.9,
+    image: "/images/produtos/azeite-extra-virgem.webp",
+    imageAlt: "Garrafa de azeite extra virgem",
+  },
+  {
+    id: "chocolate-barra",
+    category: "mercearia",
+    name: "Chocolate ao Leite em Barra",
+    unit: "90 g",
+    illustrativePrice: 6.49,
+    image: "/images/produtos/chocolate-barra.webp",
+    imageAlt: "Tablete de chocolate ao leite em pedaços",
+  },
 
-  // Café, bebidas e matinais
+  // Bebidas & Matinais (8)
   {
     id: "cafe-moido",
-    category: "bebidas-matinais",
+    category: "bebidas",
     name: "Café Torrado e Moído",
     unit: "500 g",
     illustrativePrice: 21.9,
     image: "/images/produtos/cafe-moido.webp",
     imageAlt: "Pó de café torrado e moído",
-    badge: "Matinal",
+    badge: "Campanha exemplo",
   },
   {
     id: "leite-integral",
-    category: "bebidas-matinais",
+    category: "bebidas",
     name: "Leite Integral UHT",
     unit: "1 L",
     illustrativePrice: 4.89,
@@ -337,7 +379,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: "suco-laranja",
-    category: "bebidas-matinais",
+    category: "bebidas",
     name: "Suco de Laranja Integral",
     unit: "1 L",
     illustrativePrice: 11.9,
@@ -345,8 +387,26 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     imageAlt: "Copo de suco de laranja natural",
   },
   {
+    id: "refrigerante-cola",
+    category: "bebidas",
+    name: "Refrigerante Sabor Cola",
+    unit: "2 L",
+    illustrativePrice: 8.99,
+    image: "/images/produtos/refrigerante-cola.webp",
+    imageAlt: "Copo de refrigerante de cola com gelo",
+  },
+  {
+    id: "vinho-tinto",
+    category: "bebidas",
+    name: "Vinho Tinto Seco Selecionado",
+    unit: "750 ml",
+    illustrativePrice: 29.9,
+    image: "/images/produtos/vinho-tinto.webp",
+    imageAlt: "Garrafa e taça de vinho tinto",
+  },
+  {
     id: "manteiga-sal",
-    category: "bebidas-matinais",
+    category: "bebidas",
     name: "Manteiga com Sal",
     unit: "200 g",
     illustrativePrice: 9.9,
@@ -355,7 +415,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
   },
   {
     id: "iogurte-natural",
-    category: "bebidas-matinais",
+    category: "bebidas",
     name: "Iogurte Natural Integral",
     unit: "170 g",
     illustrativePrice: 3.79,
@@ -363,69 +423,69 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     imageAlt: "Porção de iogurte natural branco",
   },
   {
-    id: "refrigerante-cola",
-    category: "bebidas-matinais",
-    name: "Refrigerante Sabor Cola",
-    unit: "2 L",
-    illustrativePrice: 8.99,
-    image: "/images/produtos/refrigerante-cola.webp",
-    imageAlt: "Copo de refrigerante de cola com gelo",
-  },
-
-  // Seleções especiais da loja
-  {
-    id: "queijo-minas",
-    category: "selecoes-especiais",
-    name: "Queijo Minas Frescal",
-    unit: "kg",
-    illustrativePrice: 38.9,
-    image: "/images/produtos/queijo-minas.webp",
-    imageAlt: "Queijo Minas Frescal inteiro no prato",
-    badge: "Seleção da loja",
-  },
-  {
-    id: "azeite-extra-virgem",
-    category: "selecoes-especiais",
-    name: "Azeite de Oliva Extra Virgem",
-    unit: "500 ml",
-    illustrativePrice: 34.9,
-    image: "/images/produtos/azeite-extra-virgem.webp",
-    imageAlt: "Garrafa de azeite extra virgem",
-  },
-  {
-    id: "vinho-tinto",
-    category: "selecoes-especiais",
-    name: "Vinho Tinto Seco Selecionado",
-    unit: "750 ml",
-    illustrativePrice: 29.9,
-    image: "/images/produtos/vinho-tinto.webp",
-    imageAlt: "Garrafa e taça de vinho tinto",
-  },
-  {
     id: "requeijao-cremoso",
-    category: "selecoes-especiais",
+    category: "bebidas",
     name: "Requeijão Cremoso Tradicional",
     unit: "200 g",
     illustrativePrice: 7.9,
     image: "/images/produtos/requeijao-cremoso.webp",
     imageAlt: "Pote de creme cremoso branco",
   },
+
+  // Higiene e limpeza (6)
   {
-    id: "chocolate-barra",
-    category: "selecoes-especiais",
-    name: "Chocolate ao Leite em Barra",
-    unit: "90 g",
-    illustrativePrice: 6.49,
-    image: "/images/produtos/chocolate-barra.webp",
-    imageAlt: "Tablete de chocolate ao leite em pedaços",
+    id: "sabao-po",
+    category: "higiene",
+    name: "Sabão em Pó Multiação",
+    unit: "1,6 kg",
+    illustrativePrice: 18.9,
+    image: "/images/produtos/sabao-po.webp",
+    imageAlt: "Sabão em pó com medidor",
+    badge: "Limpeza",
   },
   {
-    id: "presunto-fatiado",
-    category: "selecoes-especiais",
-    name: "Presunto Cozido Fatiado",
-    unit: "200 g",
-    illustrativePrice: 8.49,
-    image: "/images/produtos/presunto-fatiado.webp",
-    imageAlt: "Frios e presunto fatiado na tábua",
+    id: "detergente-liquido",
+    category: "higiene",
+    name: "Detergente Líquido Lava-Louças",
+    unit: "500 ml",
+    illustrativePrice: 2.69,
+    image: "/images/produtos/detergente-liquido.webp",
+    imageAlt: "Frasco de detergente líquido para louças",
+  },
+  {
+    id: "papel-higienico",
+    category: "higiene",
+    name: "Papel Higiênico Folha Dupla",
+    unit: "12 rolos",
+    illustrativePrice: 19.9,
+    image: "/images/produtos/papel-higienico.webp",
+    imageAlt: "Rolo de papel higiênico folha dupla",
+  },
+  {
+    id: "sabonete-barra",
+    category: "higiene",
+    name: "Sabonete Hidratante em Barra",
+    unit: "90 g",
+    illustrativePrice: 2.99,
+    image: "/images/produtos/sabonete-barra.webp",
+    imageAlt: "Sabonete em barra com espuma suave",
+  },
+  {
+    id: "agua-sanitaria",
+    category: "higiene",
+    name: "Água Sanitária Multiuso",
+    unit: "2 L",
+    illustrativePrice: 6.49,
+    image: "/images/produtos/agua-sanitaria.webp",
+    imageAlt: "Embalagens de água sanitária",
+  },
+  {
+    id: "creme-dental",
+    category: "higiene",
+    name: "Creme Dental Proteção Diária",
+    unit: "90 g",
+    illustrativePrice: 4.59,
+    image: "/images/produtos/creme-dental.webp",
+    imageAlt: "Escova e creme dental",
   },
 ];

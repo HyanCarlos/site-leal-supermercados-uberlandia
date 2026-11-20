@@ -6,8 +6,9 @@ import { Button } from "./ui/button";
 import { useBag } from "../context/BagContext";
 
 const NAV_LINKS = [
-  { label: "Sobre o Leal", href: "#sobre" },
+  { label: "Departamentos", href: "#departamentos" },
   { label: "Ofertas", href: "#ofertas" },
+  { label: "Encartes", href: "#encartes" },
   { label: "Cartão Leal", href: "#cartao-leal" },
   { label: "Clube Leal", href: "#clube-leal" },
   { label: "Nossas Lojas", href: "#lojas" },
@@ -39,13 +40,13 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? "bg-[#141418]/92 backdrop-blur-md border-b border-white/10 shadow-xl shadow-black/30"
+          ? "bg-[#141418]/94 backdrop-blur-md border-b border-white/10 shadow-xl shadow-black/30"
           : "bg-gradient-to-b from-black/80 via-black/45 to-transparent"
       }`}
     >
-      {/* Topbar integrada ao cabeçalho escuro, recolhe suavemente ao rolar */}
+      {/* Topbar integrada, recolhe suavemente ao rolar */}
       <div
-        className={`w-full border-b border-white/10 bg-black/35 backdrop-blur-xs text-zinc-200 text-xs transition-all duration-300 overflow-hidden ${
+        className={`w-full border-b border-white/10 bg-black/40 backdrop-blur-xs text-zinc-200 text-xs transition-all duration-300 overflow-hidden ${
           scrolled ? "max-h-0 opacity-0 border-b-0" : "max-h-28 opacity-100"
         }`}
       >
@@ -71,7 +72,7 @@ export function Navbar() {
           <LealLogo variant="dark" />
         </a>
 
-        <nav aria-label="Navegação principal" className="hidden items-center gap-1 lg:flex">
+        <nav aria-label="Navegação principal" className="hidden items-center gap-0.5 lg:flex">
           {NAV_LINKS.map((item) => (
             <a
               key={item.href}
@@ -80,14 +81,14 @@ export function Navbar() {
                 e.preventDefault();
                 handleLinkClick(item.href);
               }}
-              className="rounded-lg px-2.5 py-2 text-[13px] font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-[#FACC15] xl:px-3.5 xl:text-sm"
+              className="rounded-lg px-2 py-2 text-[13px] font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-[#FACC15] xl:px-3 xl:text-sm"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2.5 lg:flex">
+        <div className="hidden items-center gap-2 lg:flex">
           <Button
             variant="ghost"
             size="sm"

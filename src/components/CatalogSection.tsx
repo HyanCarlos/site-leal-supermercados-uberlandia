@@ -12,7 +12,7 @@ import {
 import { motion } from "framer-motion";
 import {
   CATALOG_PRODUCTS,
-  CATEGORY_COVERS,
+  DEPARTMENTS,
   type CatalogFilter,
 } from "../data/catalog";
 import { formatBRL, useBag } from "../context/BagContext";
@@ -20,16 +20,23 @@ import { Badge } from "./ui/badge";
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
 
-export function CatalogSection() {
-  const [selectedCategory, setSelectedCategory] = useState<CatalogFilter>("todas");
+interface CatalogSectionProps {
+  selectedCategory: CatalogFilter;
+  onSelectCategory: (cat: CatalogFilter) => void;
+}
+
+export function CatalogSection({
+  selectedCategory,
+  onSelectCategory,
+}: CatalogSectionProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [showAllInOverview, setShowAllInOverview] = useState(false);
 
   const { getQuantity, addItem, setQuantity, totalItems, subtotal, openDrawer } =
     useBag();
 
-  const categoryMap = useMemo(
-    () => new Map(CATEGORY_COVERS.map((c) => [c.id, c])),
+  const departmentMap = useMemo(
+    () => new Map(DEPARTMENTS.map((d) => [d.id, d])),
     []
   );
 
@@ -40,14 +47,14 @@ export function CatalogSection() {
         selectedCategory === "todas" || item.category === selectedCategory;
       if (!catOk) return false;
       if (!q) return true;
-      const catLabel = categoryMap.get(item.category)?.coverTitle.toLowerCase() ?? "";
+      const catLabel = departmentMap.get(item.category)?.title.toLowerCase() ?? "";
       return (
         item.name.toLowerCase().includes(q) ||
         item.unit.toLowerCase().includes(q) ||
         catLabel.includes(q)
       );
     });
-  }, [selectedCategory, searchQuery, categoryMap]);
+  }, [selectedCategory, searchQuery, departmentMap]);
 
   const visibleProducts = useMemo(() => {
     if (
@@ -57,7 +64,6 @@ export function CatalogSection() {
     ) {
       return filteredProducts;
     }
-    // Mostra 2 itens de cada uma das 6 categorias (12 no total) até expandir
     const perCat = new Map<string, number>();
     return filteredProducts.filter((item) => {
       const count = perCat.get(item.category) ?? 0;
@@ -67,25 +73,25 @@ export function CatalogSection() {
     });
   }, [filteredProducts, selectedCategory, searchQuery, showAllInOverview]);
 
-  const activeCategoryCover =
-    selectedCategory === "todas" ? null : categoryMap.get(selectedCategory) ?? null;
+  const activeDepartment =
+    selectedCategory === "todas" ? null : departmentMap.get(selectedCategory) ?? null;
 
   return (
     <section id="ofertas" className="w-full bg-[#F7F7F9] py-16 sm:py-20">
       <div className="w-full px-5 sm:px-8 lg:px-12 xl:px-16">
-        {/* Cabeçalho da seção */}
+        {/* Cabeçalho de campanha promocional + busca + sacola */}
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl space-y-3">
             <Badge variant="red">
               <Tag className="h-3.5 w-3.5" />
-              Ofertas &amp; Catálogo · Demonstração
+              Ofertas da Semana &amp; Catálogo · Demonstração
             </Badge>
             <h2 className="font-['Sora'] text-3xl font-extrabold text-zinc-950 sm:text-4xl">
-              Escolha por setor e monte sua sacola
+              Ofertas de campanha e catálogo para montar sua sacola
             </h2>
             <p className="text-base text-zinc-600">
-              Navegue pelas categorias com fotos de capa, confira o encarte da
-              semana e teste a experiência completa de compra com sacola.
+              Estrutura comercial pronta para publicar promoções da semana por
+              departamento, com preços demonstrativos marcados e sacola interativa.
             </p>
           </div>
 
@@ -142,9 +148,10 @@ export function CatalogSection() {
           <div className="flex items-start gap-2.5 sm:items-center">
             <Info className="mt-0.5 h-5 w-5 shrink-0 text-amber-700 sm:mt-0" aria-hidden="true" />
             <p>
-              <strong>Modelo de demonstração:</strong> todos os valores exibidos
-              abaixo são <strong>preços ilustrativos</strong> para apresentar o
-              catálogo e a sacola. Na versão oficial, recebem os preços reais da semana.
+              <strong>Modelo de demonstração:</strong> nenhum desconto ou preço
+              oficial foi inventado. Os valores abaixo são{" "}
+              <strong>preços ilustrativos</strong> prontos para receber o encarte
+              real da semana e a validade de cada loja participante.
             </p>
           </div>
           <span className="shrink-0 self-start rounded-full bg-amber-200/80 px-3 py-1 text-xs font-bold text-amber-950 sm:self-auto">
@@ -152,83 +159,17 @@ export function CatalogSection() {
           </span>
         </div>
 
-        {/* Grade de Categorias com Foto de Capa */}
-        <div className="mt-8">
-          <div className="mb-3 flex items-center justify-between gap-2">
-            <h3 className="font-['Sora'] text-base font-bold text-zinc-900 sm:text-lg">
-              Setores do supermercado
-            </h3>
-            {selectedCategory !== "todas" && (
-              <button
-                type="button"
-                onClick={() => setSelectedCategory("todas")}
-                className="text-xs font-bold text-[#DC1F26] hover:underline cursor-pointer"
-              >
-                Mostrar todos os setores
-              </button>
-            )}
-          </div>
-
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-            {CATEGORY_COVERS.map((cat) => {
-              const active = selectedCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  type="button"
-                  onClick={() =>
-                    setSelectedCategory((prev) =>
-                      prev === cat.id ? "todas" : cat.id
-                    )
-                  }
-                  aria-pressed={active}
-                  className={`group relative overflow-hidden rounded-2xl border text-left transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DC1F26] ${
-                    active
-                      ? "border-[#DC1F26] ring-2 ring-[#DC1F26] shadow-lg shadow-[#DC1F26]/15"
-                      : "border-zinc-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-md"
-                  }`}
-                >
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-zinc-200">
-                    <img
-                      src={cat.coverImage}
-                      alt={cat.coverAlt}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div
-                      aria-hidden="true"
-                      className={`absolute inset-0 bg-gradient-to-t transition-opacity ${
-                        active
-                          ? "from-[#DC1F26]/90 via-black/45 to-black/15"
-                          : "from-black/85 via-black/35 to-transparent"
-                      }`}
-                    />
-                    <div className="absolute inset-x-0 bottom-0 p-3">
-                      <span className="block font-['Sora'] text-xs font-extrabold leading-snug text-white sm:text-sm">
-                        {cat.coverTitle}
-                      </span>
-                      <span className="mt-0.5 hidden text-[11px] leading-tight text-white/80 sm:block">
-                        {cat.coverSubtitle}
-                      </span>
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Abas de filtro rápido por categoria */}
+        {/* Abas de filtro rápido por departamento */}
         <div
           role="tablist"
-          aria-label="Filtrar catálogo por categoria"
+          aria-label="Filtrar catálogo por departamento"
           className="mt-6 flex flex-wrap gap-2"
         >
           <button
             role="tab"
             type="button"
             aria-selected={selectedCategory === "todas"}
-            onClick={() => setSelectedCategory("todas")}
+            onClick={() => onSelectCategory("todas")}
             className={`rounded-full px-4 py-2 text-sm font-semibold transition cursor-pointer ${
               selectedCategory === "todas"
                 ? "bg-[#DC1F26] text-white shadow-sm shadow-[#DC1F26]/25"
@@ -237,65 +178,65 @@ export function CatalogSection() {
           >
             Todas ({CATALOG_PRODUCTS.length})
           </button>
-          {CATEGORY_COVERS.map((cat) => {
-            const active = selectedCategory === cat.id;
-            const count = CATALOG_PRODUCTS.filter((p) => p.category === cat.id).length;
+          {DEPARTMENTS.map((dept) => {
+            const active = selectedCategory === dept.id;
+            const count = CATALOG_PRODUCTS.filter((p) => p.category === dept.id).length;
             return (
               <button
-                key={cat.id}
+                key={dept.id}
                 role="tab"
                 type="button"
                 aria-selected={active}
-                onClick={() => setSelectedCategory(cat.id)}
+                onClick={() => onSelectCategory(dept.id)}
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition cursor-pointer ${
                   active
                     ? "bg-[#DC1F26] text-white shadow-sm shadow-[#DC1F26]/25"
                     : "border border-zinc-200 bg-white text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50"
                 }`}
               >
-                {cat.tabLabel} ({count})
+                {dept.tabLabel} ({count})
               </button>
             );
           })}
         </div>
 
-        {/* Banner da capa quando um setor específico está selecionado */}
-        {activeCategoryCover && (
+        {/* Banner com a foto real do departamento selecionado */}
+        {activeDepartment && (
           <div className="mt-6 relative overflow-hidden rounded-2xl border border-zinc-200 bg-[#141418] text-white shadow-sm">
             <img
-              src={activeCategoryCover.coverImage}
-              alt={activeCategoryCover.coverAlt}
-              className="absolute inset-0 h-full w-full object-cover opacity-45"
+              src={activeDepartment.coverImage}
+              alt={activeDepartment.coverAlt}
+              className="absolute inset-0 h-full w-full object-cover opacity-50"
             />
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/65 to-black/30"
+              className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/65 to-black/30"
             />
             <div className="relative z-10 flex flex-col gap-3 px-6 py-6 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <span className="inline-block rounded-full bg-[#FACC15] px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-wide text-zinc-950">
-                  Setor selecionado
+                  Departamento selecionado
                 </span>
                 <h3 className="mt-1.5 font-['Sora'] text-xl font-extrabold sm:text-2xl">
-                  {activeCategoryCover.coverTitle}
+                  {activeDepartment.title}
                 </h3>
                 <p className="text-sm text-zinc-200">
-                  {activeCategoryCover.coverSubtitle} · {filteredProducts.length} itens
+                  {activeDepartment.shortDesc} · {filteredProducts.length} itens
                 </p>
               </div>
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setSelectedCategory("todas")}
+                onClick={() => onSelectCategory("todas")}
                 className="self-start border border-white/30 bg-white/10 text-white hover:bg-white/20 hover:text-white sm:self-auto"
               >
-                Ver todas as categorias
+                Ver todos os departamentos
               </Button>
             </div>
           </div>
         )}
 
-        {/* Grade de Produtos (estilo Supermercados ABC) */}
+        {/* Grade de Produtos com Sacola */}
         {visibleProducts.length === 0 ? (
           <div className="mt-10 rounded-2xl border border-dashed border-zinc-300 bg-white p-10 text-center">
             <p className="font-['Sora'] text-base font-bold text-zinc-900">
@@ -310,7 +251,7 @@ export function CatalogSection() {
               className="mt-4"
               onClick={() => {
                 setSearchQuery("");
-                setSelectedCategory("todas");
+                onSelectCategory("todas");
               }}
             >
               Limpar filtros
@@ -320,7 +261,7 @@ export function CatalogSection() {
           <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:gap-5">
             {visibleProducts.map((product) => {
               const qty = getQuantity(product.id);
-              const catInfo = categoryMap.get(product.category);
+              const deptInfo = departmentMap.get(product.category);
               return (
                 <motion.div
                   key={product.id}
@@ -344,7 +285,7 @@ export function CatalogSection() {
                       />
                       <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
                         <span className="rounded-full bg-zinc-950/80 px-2.5 py-1 text-[11px] font-bold text-white backdrop-blur-xs">
-                          {catInfo?.tabLabel}
+                          {deptInfo?.tabLabel}
                         </span>
                         {product.badge && (
                           <span className="rounded-full bg-[#FACC15] px-2.5 py-1 text-[11px] font-extrabold text-zinc-950">
@@ -360,7 +301,7 @@ export function CatalogSection() {
                           {product.name}
                         </h3>
                         <p className="mt-0.5 text-xs font-medium text-zinc-500">
-                          Unidade: {product.unit}
+                          Unidade: {product.unit} · Todas as lojas
                         </p>
                       </div>
 
@@ -440,7 +381,6 @@ export function CatalogSection() {
           </div>
         )}
 
-        {/* Botão para expandir todos os 36 itens na aba "Todas" */}
         {selectedCategory === "todas" &&
           searchQuery.trim() === "" &&
           filteredProducts.length > visibleProducts.length && (

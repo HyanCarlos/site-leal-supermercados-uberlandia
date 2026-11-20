@@ -29,7 +29,7 @@ export function CareersSection() {
 
   return (
     <section id="trabalhe-conosco" className="bg-white py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-5 sm:px-8 lg:px-12 xl:px-16">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
           {/* Left Institutional Info */}
           <div className="lg:col-span-6 space-y-5">

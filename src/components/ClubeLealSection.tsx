@@ -11,7 +11,7 @@ const CLUBE_BENEFITS = [
 export function ClubeLealSection() {
   return (
     <section id="clube-leal" className="bg-white py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-5 sm:px-8 lg:px-12 xl:px-16">
         <div className="relative overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br from-[#FFF9EB] via-white to-[#FEF2F2] p-6 sm:p-10 lg:p-12 shadow-sm">
           <div className="grid items-center gap-10 lg:grid-cols-12">
             {/* App Mockup Card */}
@@ -27,7 +27,7 @@ export function ClubeLealSection() {
 
                 <div className="flex items-center gap-3.5 rounded-2xl bg-zinc-50 p-3.5 border border-zinc-100">
                   <img
-                    src="https://play-lh.googleusercontent.com/abowZ3thw1d6DPAwvZepWSevWtibrfrr1bndFyPgLgDqdYXJDrtAfCTZk1az8TP2XSFXUzs4mXccLcXqKy5baQ=s0-br30"
+                    src="/images/clube-leal-icon.png"
                     alt="Ícone oficial do aplicativo Clube Leal"
                     className="h-14 w-14 rounded-xl object-contain bg-white p-1 shadow-xs"
                     loading="lazy"

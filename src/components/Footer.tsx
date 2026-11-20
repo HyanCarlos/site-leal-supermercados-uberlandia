@@ -40,7 +40,7 @@ function FacebookIcon({ className }: { className?: string }) {
 export function Footer() {
   return (
     <footer className="bg-[#141418] text-zinc-300">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="w-full px-5 py-12 sm:px-8 lg:px-12 xl:px-16">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5 space-y-4">
             <LealLogo variant="dark" />
@@ -58,8 +58,18 @@ export function Footer() {
             </h3>
             <ul className="space-y-2 text-sm">
               <li>
+                <a href="#departamentos" className="hover:text-white transition">
+                  Departamentos
+                </a>
+              </li>
+              <li>
+                <a href="#encartes" className="hover:text-white transition">
+                  Encartes digitais
+                </a>
+              </li>
+              <li>
                 <a href="#sobre" className="hover:text-white transition">
-                  Sobre o Leal
+                  Sobre o Leal (Desde 1989)
                 </a>
               </li>
               <li>
