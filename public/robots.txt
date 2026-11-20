@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://site-leal-supermercados-uberlandia.vercel.app/sitemap.xml
